@@ -15,6 +15,14 @@ export default function StudentCard({
   const formatDate = (date: Date) => format(date, 'Do MMMM, YYYY')
   const newDob = formatDate(new Date(dob))
 
+  // logic for age
+  const factor = 365 * 24 * 60 * 60 * 1000
+  const diff = new Date().getTime() - new Date(dob).getTime()
+  const obj = { firstname, age: (diff / factor).toFixed(0) }
+  console.log(obj)
+
+  const age = (diff / factor).toFixed(0)
+
   /* -- DELETE USER -- */
   const deleteHandler = async () => {
     alert('Are you sure you want to delete the user?')
@@ -43,6 +51,7 @@ export default function StudentCard({
           <p>Date of birth:{` ${newDob}`} </p>
           <p>Grade: {` ${grade}`}</p>
           <p>Gender:{` ${gender}`} </p>
+          <p>Age:{` ${age} year(s)`} </p>
           <div className='card-actions justify-end'>
             <button
               onClick={handleUpdate}
