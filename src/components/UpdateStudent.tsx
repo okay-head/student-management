@@ -80,7 +80,7 @@ export default function UpdateStudent() {
   const onErrorHandler: SubmitErrorHandler<TForm> = (err) => console.error(err)
 
   return (
-    <Container>
+    <Container classVars={'mb-10'}>
       <form
         id='form'
         name='form'

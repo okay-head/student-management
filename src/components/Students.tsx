@@ -16,7 +16,7 @@ export default function Students() {
   }, [])
 
   return (
-    <Container>
+    <Container classVars={'mb-10'}>
       <h1 className='mb-8 border-b pb-3 text-4xl font-semibold'>
         All Students
       </h1>

@@ -77,7 +77,7 @@ export default function CreateStudent() {
   const onErrorHandler: SubmitErrorHandler<TForm> = (err) => console.error(err)
 
   return (
-    <Container>
+    <Container classVars={'mb-10'}>
       <form
         id='form'
         name='form'
