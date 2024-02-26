@@ -1,1 +1,1 @@
-sample Students CRUD app
+Student management CRUD app
