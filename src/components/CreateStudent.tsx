@@ -10,11 +10,11 @@ export default function CreateStudent() {
   const addUser = ({ firstname, lastname, dob, grade, gender }: User2) => {
     /* -- ADD USER -- */
     const insertId = Date.now()
-    const payload: User = {
+    const payload: UserPayload = {
       id: Number(insertId),
       firstname,
       lastname,
-      dob,
+      dob: dob.getTime(),
       grade,
       gender,
     }

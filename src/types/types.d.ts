@@ -2,13 +2,23 @@ const obj = {
   id: 1,
   firstname: 'John',
   lastname: 'Doe',
-  dob: '2000-12-05T05:30:00.000Z',
+  dob: new Date(),
   grade: 8,
   gender: 'Male',
 }
 type User = typeof obj
 type User2 = Omit<User, 'id'>
 
+const obj2 = {
+  id: 1,
+  firstname: 'John',
+  lastname: 'Doe',
+  dob: number,
+  grade: 8,
+  gender: 'Male',
+}
+
+type UserPayload = typeof obj2
 const users = [
   {
     id: 1,
