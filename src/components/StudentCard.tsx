@@ -52,7 +52,7 @@ export default function StudentCard({
           <p>Grade: {` ${grade}`}</p>
           <p>Gender:{` ${gender}`} </p>
           <p>Age:{` ${age} year(s)`} </p>
-          <div className='card-actions justify-end'>
+          <div className='card-actions mt-3 justify-end'>
             <button
               onClick={handleUpdate}
               className='btn btn-neutral btn-sm font-normal hover:btn-outline'
