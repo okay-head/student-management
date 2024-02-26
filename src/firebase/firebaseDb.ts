@@ -3,7 +3,6 @@ import {
   get,
   getDatabase,
   set,
-  update,
   remove,
   push,
   child,

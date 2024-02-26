@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import ErrorMsg from './shared/ErrorMsg'
 import Container from './shared/Container'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { setFn } from '../firebase/firebaseDb'
 
 export default function CreateStudent() {

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
-  const isSignedIn = false
   return (
     <div>
       <div className='navbar fixed z-10 bg-base-100 shadow lg:px-8'>

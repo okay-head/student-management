@@ -3,8 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import ErrorMsg from './shared/ErrorMsg'
 import Container from './shared/Container'
-import { getFn, setFn } from '../firebase/firebaseDb'
-import { useEffect, useState } from 'react'
+import { setFn } from '../firebase/firebaseDb'
 import { useNavigate } from 'react-router-dom'
 
 export default function UpdateStudent() {
