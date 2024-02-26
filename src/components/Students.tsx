@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import Container from './shared/Container'
 import StudentCard from './StudentCard'
-import { getFn, setFn } from '../firebase/firebaseDb'
-import { Link } from 'react-router-dom'
+import { getFn } from '../firebase/firebaseDb'
 
 export default function Students() {
   const [data, setData] = useState<Users | null>(null)
@@ -11,7 +10,6 @@ export default function Students() {
   useEffect(() => {
     getFn('/data/')
       .then((res: any) => {
-        // console.log(res)
         setData(Object.values(res))
       })
       .catch((err: any) => console.error(err))
@@ -28,10 +26,6 @@ export default function Students() {
         ) : (
           data?.map((element) => <StudentCard key={element.id} {...element} />)
         )}
-        {/* <StudentCard />
-        <StudentCard />
-        <StudentCard /> 
-        <StudentCard /> */}
       </div>
     </Container>
   )

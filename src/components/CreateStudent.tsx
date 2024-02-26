@@ -28,8 +28,6 @@ export default function CreateStudent() {
         navigate('/')
       })
       .catch((message) => {
-        // toast.dismiss()
-        // toast.error('DB Error')
         console.error(message)
       })
   }
@@ -211,35 +209,6 @@ export default function CreateStudent() {
               <span className='text-container mx-auto max-w-max'>Insert</span>
             </button>
           </div>
-          {/* <div className='mx-auto my-4 -mb-1 mt-8 flex max-w-max flex-col items-center gap-3 text-sm font-semibold block mt-2 lg:flex-row lg:gap-0'>
-            <input
-              {...register('checkbox')}
-              type='checkbox'
-              name='checkbox'
-              id='checkbox'
-              className='checkbox checkbox-xs me-2'
-            />
-            <div>
-              You agree to our{' '}
-              <a
-                href='https://www.termsfeed.com/public/uploads/2021/12/sample-privacy-policy-template.pdf'
-                target='_blank'
-                rel='noopener noreferrer'
-                className='cursor-pointer font-semibold outline-offset-2 outline-neutral-grayBlue hover:underline'
-              >
-                Terms and Services
-              </a>
-            </div>
-          </div> */}
-
-          {/* <p className=' absolute left-1/2 top-[105%] min-w-72 -translate-x-1/2 text-center'>
-            <span>Already have an account?</span>{' '}
-            <span>
-              <Link to='/auth/signin' className='link hover:no-underline'>
-                Sign in
-              </Link>
-            </span>
-          </p> */}
         </div>
       </form>
     </Container>

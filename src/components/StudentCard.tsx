@@ -12,11 +12,9 @@ export default function StudentCard({
 }: UserPayload) {
   const navigate = useNavigate()
 
-  // console.log({ id, firstname, lastname, dob, grade, gender })
-  // console.log(formatDate((new Date(dob)).getTime()))
   const formatDate = (date: Date) => format(date, 'Do MMMM, YYYY')
-
   const newDob = formatDate(new Date(dob))
+
   /* -- DELETE USER -- */
   const deleteHandler = async () => {
     alert('Are you sure you want to delete the user?')

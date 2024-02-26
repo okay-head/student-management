@@ -9,18 +9,8 @@ import { useNavigate } from 'react-router-dom'
 
 export default function UpdateStudent() {
   const navigate = useNavigate()
-  // const [data, setData] = useState<User | null>(null)
-  // console.log(data)
 
   const userData = JSON.parse(localStorage.getItem('user') || 'NO DATA')
-  // useEffect(() => {
-  //   getFn('/data/' + userid)
-  //     .then((res: any) => {
-  //       // console.log(res)
-  //       setData(res)
-  //     })
-  //     .catch((err: any) => console.error(err))
-  // }, [])
   const updateUser = ({ firstname, lastname, dob, grade, gender }: User2) => {
     /* -- Update USER -- */
     const payload: UserPayload = {
