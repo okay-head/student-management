@@ -3,16 +3,28 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import ErrorMsg from './shared/ErrorMsg'
 import Container from './shared/Container'
-import { Link, useNavigate } from 'react-router-dom'
-import { setFn } from '../firebase/firebaseDb'
+import { getFn, setFn } from '../firebase/firebaseDb'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export default function CreateStudent() {
+export default function UpdateStudent() {
   const navigate = useNavigate()
-  const addUser = ({ firstname, lastname, dob, grade, gender }: User2) => {
-    /* -- ADD USER -- */
-    const insertId = Date.now()
+  // const [data, setData] = useState<User | null>(null)
+  // console.log(data)
+
+  const userData = JSON.parse(localStorage.getItem('user') || 'NO DATA')
+  // useEffect(() => {
+  //   getFn('/data/' + userid)
+  //     .then((res: any) => {
+  //       // console.log(res)
+  //       setData(res)
+  //     })
+  //     .catch((err: any) => console.error(err))
+  // }, [])
+  const updateUser = ({ firstname, lastname, dob, grade, gender }: User2) => {
+    /* -- Update USER -- */
     const payload: UserPayload = {
-      id: Number(insertId),
+      id: userData.id,
       firstname,
       lastname,
       dob: dob.getTime(),
@@ -21,10 +33,10 @@ export default function CreateStudent() {
     }
 
     // --- Send to db ---
-    setFn(`/data/${insertId}`, payload)
+    setFn(`/data/${userData.id}`, payload, false)
       .then(() => {
-        alert('user created')
-        console.log('successfully set?')
+        alert('user updated')
+        console.log('successfully updated')
         navigate('/')
       })
       .catch((message) => {
@@ -58,23 +70,23 @@ export default function CreateStudent() {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
+    // reset,
     // watch,
   } = useForm<TForm>({
     defaultValues: {
-      firstname: '',
-      lastname: '',
-      dob: new Date(),
-      grade: 0,
-      gender: '',
+      firstname: userData.firstname,
+      lastname: userData.lastname,
+      dob: new Date(userData.dob),
+      grade: userData.grade,
+      gender: userData.gender,
     },
     resolver: zodResolver(formSchema),
   })
 
   const onSubmitHandler: SubmitHandler<TForm> = (data: any) => {
-    addUser(data)
+    updateUser(data)
     console.log(data)
-    reset() // reset the form
+    // reset() // reset the form
   }
   const onErrorHandler: SubmitErrorHandler<TForm> = (err) => console.error(err)
 
@@ -86,7 +98,7 @@ export default function CreateStudent() {
         onSubmit={handleSubmit(onSubmitHandler, onErrorHandler)}
       >
         <div className='form-container relative mx-auto max-w-md rounded-md border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] px-6 py-10 lg:px-8'>
-          <h1 className='mb-8 block text-2xl font-bold'>Insert student data</h1>
+          <h1 className='mb-8 block text-2xl font-bold'>Update student data</h1>
           {/* -- firstname -- */}
           <div className='relative'>
             <label
@@ -197,9 +209,6 @@ export default function CreateStudent() {
               </div>
 
               <ErrorMsg>{errors?.gender?.message}</ErrorMsg>
-              {/* <div className='text-danger mt-3'>
-                {errors.gender?.type === 'required' && 'Tell us your gender.'}
-              </div> */}
             </div>
           </div>
           <div>
@@ -208,38 +217,9 @@ export default function CreateStudent() {
               id='submit'
               className='btn btn-wide mx-auto mb-2 mt-8  block'
             >
-              <span className='text-container mx-auto max-w-max'>Insert</span>
+              <span className='text-container mx-auto max-w-max'>Update</span>
             </button>
           </div>
-          {/* <div className='mx-auto my-4 -mb-1 mt-8 flex max-w-max flex-col items-center gap-3 text-sm font-semibold block mt-2 lg:flex-row lg:gap-0'>
-            <input
-              {...register('checkbox')}
-              type='checkbox'
-              name='checkbox'
-              id='checkbox'
-              className='checkbox checkbox-xs me-2'
-            />
-            <div>
-              You agree to our{' '}
-              <a
-                href='https://www.termsfeed.com/public/uploads/2021/12/sample-privacy-policy-template.pdf'
-                target='_blank'
-                rel='noopener noreferrer'
-                className='cursor-pointer font-semibold outline-offset-2 outline-neutral-grayBlue hover:underline'
-              >
-                Terms and Services
-              </a>
-            </div>
-          </div> */}
-
-          {/* <p className=' absolute left-1/2 top-[105%] min-w-72 -translate-x-1/2 text-center'>
-            <span>Already have an account?</span>{' '}
-            <span>
-              <Link to='/auth/signin' className='link hover:no-underline'>
-                Sign in
-              </Link>
-            </span>
-          </p> */}
         </div>
       </form>
     </Container>

@@ -19,10 +19,12 @@ export const getFn = async (url: string = '') => {
   return data.val()
 }
 
-export const setFn = async (url: string, payload: any) => {
-  const res = await get(ref(db, url))
-  if (res.exists())
-    return Promise.reject('Data already exists at this location\ndb/' + url)
+export const setFn = async (url: string, payload: any, check = true) => {
+  if (check) {
+    const res = await get(ref(db, url))
+    if (res.exists())
+      return Promise.reject('Data already exists at this location\ndb/' + url)
+  }
 
   try {
     const res = set(ref(db, url), payload)

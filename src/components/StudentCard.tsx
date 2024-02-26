@@ -1,5 +1,6 @@
 import { format } from 'fecha'
 import { deleteFn, getFn } from '../firebase/firebaseDb'
+import { useNavigate } from 'react-router-dom'
 
 export default function StudentCard({
   id,
@@ -9,6 +10,8 @@ export default function StudentCard({
   grade,
   gender,
 }: UserPayload) {
+  const navigate = useNavigate()
+
   // console.log({ id, firstname, lastname, dob, grade, gender })
   // console.log(formatDate((new Date(dob)).getTime()))
   const formatDate = (date: Date) => format(date, 'Do MMMM, YYYY')
@@ -23,9 +26,15 @@ export default function StudentCard({
       console.log(resource)
 
       await deleteFn(`/data/${id}`)
+      window.location.reload()
     } catch (error) {
       console.log(error)
     }
+  }
+  const handleUpdate = async () => {
+    const userdata = { id, firstname, lastname, dob, grade, gender }
+    localStorage.setItem('user', JSON.stringify(userdata))
+    navigate('/update')
   }
 
   return (
@@ -37,7 +46,10 @@ export default function StudentCard({
           <p>Grade: {` ${grade}`}</p>
           <p>Gender:{` ${gender}`} </p>
           <div className='card-actions justify-end'>
-            <button className='btn btn-neutral btn-sm font-normal hover:btn-outline'>
+            <button
+              onClick={handleUpdate}
+              className='btn btn-neutral btn-sm font-normal hover:btn-outline'
+            >
               Update user
             </button>
             <button

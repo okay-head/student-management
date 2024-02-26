@@ -4,6 +4,7 @@ import Navbar from './components/nav/Navbar'
 import NotFound from './components/NotFound'
 import Students from './components/Students'
 import CreateStudent from './components/CreateStudent'
+import UpdateStudent from './components/UpdateStudent'
 // import SignUp from './components/CreateStudent'
 // import Home from './components/Home'
 // import SignIn from './components/auth/SignIn'
@@ -36,6 +37,7 @@ export default function App() {
         {/* <Route path='/auth'> */}
         {/* <Route index element={<NotFound />} /> */}
         <Route path='create' element={<CreateStudent />} />
+        <Route path='update' element={<UpdateStudent />} />
         {/* <Route path='signin' element={<SignIn />} /> */}
         {/* </Route> */}
         <Route path='*' element={<NotFound />} />
