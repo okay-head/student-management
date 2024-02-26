@@ -7,6 +7,7 @@ const obj = {
   gender: 'Male',
 }
 type User = typeof obj
+type User2 = Omit<User, 'id'>
 
 const users = [
   {

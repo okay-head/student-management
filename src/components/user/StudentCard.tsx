@@ -1,3 +1,5 @@
+import { format } from 'fecha'
+
 export default function StudentCard({
   id,
   firstname,
@@ -6,7 +8,10 @@ export default function StudentCard({
   grade,
   gender,
 }: User) {
-  console.log({ id, firstname, lastname, dob, grade, gender })
+  // console.log({ id, firstname, lastname, dob, grade, gender })
+  const formatDate = (date: Date) => format(date, 'Do MMMM, YYYY')
+
+  // console.log(formatDate((new Date(dob)).getTime()))
 
   return (
     <div className='student-card' id={`${id}`}>

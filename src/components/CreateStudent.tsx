@@ -7,20 +7,20 @@ import { Link } from 'react-router-dom'
 import { setFn } from '../firebase/firebaseDb'
 
 export default function CreateStudent() {
-  const addUser = () => {
+  const addUser = ({ firstname, lastname, dob, grade, gender }: User2) => {
     /* -- ADD USER -- */
     const insertId = Date.now()
     const payload: User = {
       id: Number(insertId),
-      firstname: 'Sophia',
-      lastname: 'Williams',
-      dob: '2001-11-25T05:30:00.000Z',
-      grade: 11,
-      gender: 'Female',
+      firstname,
+      lastname,
+      dob,
+      grade,
+      gender,
     }
 
     // --- Send to db ---
-    setFn(`/data/${insertId}}`, payload)
+    setFn(`/data/${insertId}`, payload)
       .then(() => {
         console.log('successfully set?')
 
@@ -76,21 +76,17 @@ export default function CreateStudent() {
       dob: new Date(),
       grade: 0,
       gender: '',
-      // checkbox: false,
     },
     resolver: zodResolver(formSchema),
   })
 
-  //SumbitHandler is an imported 'type'
-  const onSubmitHandler: SubmitHandler<TForm> = (data) => {
+  const onSubmitHandler: SubmitHandler<TForm> = (data: any) => {
+    addUser(data)
     console.log(data)
-    // [IMPROVEMENT] use react-toast-notifications instead
     alert('Form submitted successfully')
     reset() // reset the form
   }
   const onErrorHandler: SubmitErrorHandler<TForm> = (err) => console.error(err)
-
-  // const isChecked = watch('checkbox')
 
   return (
     <Container>
