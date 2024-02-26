@@ -22,19 +22,8 @@ export default function CreateStudent() {
     // --- Send to db ---
     setFn(`/data/${insertId}`, payload)
       .then(() => {
+        alert('user created')
         console.log('successfully set?')
-
-        // toast.success('Profile successfully created!')
-
-        //update the user details in context after creation
-        // setUser(payload)
-
-        // redirect after a timeout [NEED ANIMATION]
-        // setTimeout(() => {
-        //   toast.dismiss()
-        //   localStorage.removeItem('userPayload')
-        //   setAuth(true)
-        // }, 1500)
       })
       .catch((message) => {
         // toast.dismiss()
@@ -96,37 +85,57 @@ export default function CreateStudent() {
         onSubmit={handleSubmit(onSubmitHandler, onErrorHandler)}
       >
         <div className='form-container relative mx-auto max-w-md rounded-md border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] px-6 py-10 lg:px-8'>
-          <h1 className='mb-4 block text-2xl font-bold'>Insert student data</h1>
+          <h1 className='mb-8 block text-2xl font-bold'>Insert student data</h1>
           {/* -- firstname -- */}
           <div className='relative'>
+            <label
+              htmlFor='firstname'
+              className='-mb-1 mt-3 block text-sm font-semibold'
+            >
+              Firstname
+            </label>
             <input
               {...register('firstname')}
-              className='input input-sm input-bordered mb-2 mt-4 w-full'
+              className='input input-sm input-bordered mb-2 mt-2 w-full'
               type='text'
               name='firstname'
               id='firstname'
-              placeholder='Enter firstname'
+              placeholder=''
             />
             <ErrorMsg>{errors?.firstname?.message}</ErrorMsg>
           </div>
           {/* -- lastname -- */}
           <div className='relative'>
+            <label
+              htmlFor='lastname'
+              className='-mb-1 mt-3 block text-sm font-semibold'
+            >
+              Lastname
+            </label>
+
             <input
               {...register('lastname')}
-              className='input input-sm input-bordered mb-2 mt-4 w-full'
+              className='input input-sm input-bordered mb-2 mt-2 w-full'
               type='text'
               name='lastname'
               id='lastname'
-              placeholder='Enter lastname'
+              placeholder=''
             />
             <ErrorMsg>{errors?.lastname?.message}</ErrorMsg>
           </div>
 
           {/* -- dob -- */}
           <div className='relative'>
+            <label
+              htmlFor='dob'
+              className='-mb-1 mt-3 block text-sm font-semibold'
+            >
+              DOB
+            </label>
+
             <input
               {...register('dob', { valueAsDate: true })}
-              className='input input-sm input-bordered mb-2 mt-4 w-full'
+              className='input input-sm input-bordered mb-2 mt-2 w-full'
               type='date'
               name='dob'
               id='dob'
@@ -137,9 +146,16 @@ export default function CreateStudent() {
 
           {/* -- grade -- */}
           <div className='relative'>
+            <label
+              htmlFor='grade'
+              className='-mb-1 mt-3 block text-sm font-semibold'
+            >
+              Grade(0-10)
+            </label>
+
             <input
               {...register('grade', { valueAsNumber: true })}
-              className='input input-sm input-bordered mb-2 mt-4 w-full'
+              className='input input-sm input-bordered mb-2 mt-2 w-full'
               type='number'
               name='grade'
               id='grade'
@@ -150,9 +166,9 @@ export default function CreateStudent() {
 
           {/* gender checkboxes */}
           <div className='relative mb-4 mt-3 flex flex-col'>
-            <div className='font-semibold'>Gender</div>
+            <div className='text-sm font-semibold'>Gender</div>
             <div>
-              <div className='form-check mt-3'>
+              <div className='form-check mt-1'>
                 <label htmlFor='Male'>
                   <input
                     {...register('gender', { required: true })}
@@ -171,7 +187,7 @@ export default function CreateStudent() {
                     {...register('gender', { required: true })}
                     type='radio'
                     name='gender'
-                    value='Burger'
+                    value='Female'
                     className='form-check-input'
                     id='Female'
                   />{' '}
@@ -189,12 +205,12 @@ export default function CreateStudent() {
             <button
               form='form'
               id='submit'
-              className='btn btn-wide mx-auto my-4 block'
+              className='btn btn-wide mx-auto mb-2 mt-8  block'
             >
               <span className='text-container mx-auto max-w-max'>Insert</span>
             </button>
           </div>
-          {/* <div className='mx-auto my-4 -mb-1 mt-8 flex max-w-max flex-col items-center gap-3 text-sm lg:flex-row lg:gap-0'>
+          {/* <div className='mx-auto my-4 -mb-1 mt-8 flex max-w-max flex-col items-center gap-3 text-sm font-semibold block mt-2 lg:flex-row lg:gap-0'>
             <input
               {...register('checkbox')}
               type='checkbox'

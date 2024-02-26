@@ -16,7 +16,7 @@ export default function Navbar() {
             id='adduser'
             className='btn btn-outline btn-success btn-sm fixed left-[80%]'
           >
-            Create user
+            Add student
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'

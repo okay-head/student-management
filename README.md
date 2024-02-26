@@ -1,1 +1,1 @@
-Task central MERN app
+sample Students CRUD app

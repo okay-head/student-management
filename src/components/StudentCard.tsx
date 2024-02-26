@@ -1,5 +1,5 @@
 import { format } from 'fecha'
-import { deleteFn, getFn } from '../../firebase/firebaseDb'
+import { deleteFn, getFn } from '../firebase/firebaseDb'
 
 export default function StudentCard({
   id,
@@ -32,17 +32,17 @@ export default function StudentCard({
     <div className='student-card' id={`${id}`}>
       <div className='card w-96 bg-base-200 shadow-xl'>
         <div className='card-body'>
-          <h2 className='card-title'>{`${firstname} ${lastname}`}</h2>
+          <h2 className='card-title text-xl'>{`${firstname} ${lastname}`}</h2>
           <p>Date of birth:{` ${newDob}`} </p>
           <p>Grade: {` ${grade}`}</p>
           <p>Gender:{` ${gender}`} </p>
           <div className='card-actions justify-end'>
-            <button className='btn btn-outline btn-neutral btn-sm'>
+            <button className='btn btn-neutral btn-sm font-normal hover:btn-outline'>
               Update user
             </button>
             <button
               onClick={deleteHandler}
-              className='btn btn-outline btn-error btn-sm'
+              className='btn btn-outline btn-error btn-sm font-normal'
             >
               Delete user
             </button>

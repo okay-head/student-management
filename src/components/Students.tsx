@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import Container from '../shared/Container'
+import Container from './shared/Container'
 import StudentCard from './StudentCard'
-import { getFn, setFn } from '../../firebase/firebaseDb'
+import { getFn, setFn } from '../firebase/firebaseDb'
 import { Link } from 'react-router-dom'
 
 export default function Students() {
@@ -19,7 +19,9 @@ export default function Students() {
 
   return (
     <Container>
-      <h1 className='mb-10 text-4xl font-semibold underline'>Students</h1>
+      <h1 className='mb-8 border-b pb-3 text-4xl font-semibold'>
+        All Students
+      </h1>
       <div className='tasks-container relative grid grid-cols-2 gap-x-4 gap-y-8'>
         {!data ? (
           <h2>No data</h2>
